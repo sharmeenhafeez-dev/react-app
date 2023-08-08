@@ -1,36 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import ReactStars from 'react-stars'
 import { useParams } from 'react-router-dom';
-import Swal from 'sweetalert2'
 import axios from 'axios';
+import ReactStars from 'react-stars'
+import Swal from 'sweetalert2'
 import ImageSection from '../Components/ImageSection';
-
 export default function ProductsPage() {
     const { productsID } = useParams();
     const [product, setProduct] = useState([]);
     const [review, setReview] = useState("");
     const [ratingstar, setRatingstar] = useState([0]);
     const [productQuantity, setProductQuantity] = useState(1)
-
     const ratingChanged = (newRating) => {
-        setRatingstar(newRating)
-    }
+        setRatingstar(newRating)}
 
-    const submitReview = () => {
-        const payLoad = {
-            productsID: productsID,
-            review: review,
-            rating: ratingstar
-        }
-        console.log(payLoad)
-
-        Swal.fire({
-            title: 'successfully submitted!',
-            text: 'thanks for Reviewing our products',
-            icon: 'success',
-            confirmButtonText: 'continue shopping'
-        })
-    }
+        const submitReview = () => {
+            const payload = {
+              productID: productID,
+              review: review,
+              rating: ratingstar,
+        
+            }
+            console.log(payload)
+        
+            Swal.fire({
+              title: 'Successfully Submited!',
+              text: 'Thanks for Reviewing Our Product',
+              icon: 'success',
+              confirmButtonText: 'Thanks for Rating Us',
+            })
+        
+          }
 
     const addToCart = () => {
         const payload = {
@@ -118,7 +117,8 @@ export default function ProductsPage() {
                                     <span className='ms-3'>({ratingstar})</span>
                                 </div>
                             </div>
-                            <button className='md-5 btn btn-dark' onClick={submitReview}>Submit Review</button>
+                            <button className='md-5 btn btn-dark'
+                             onClick={()=>submitReview}>Submit Review</button>
                         </div>
                     </div>
                 </div>

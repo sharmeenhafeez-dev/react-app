@@ -5,15 +5,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { useContext } from 'react';
-import { GlobleContext } from './context/context';
+// import { GlobleContext } from './context/context';
 
 const NavigationBar = () => {
-  const { state, dispatch } = useContext(GlobleContext);
-console.log(state)
+  // const { state , dispatch } = useContext(GlobleContext);
+// console.log(data.user)
 
-useEffect(()=>{
-console.log("CONTEXT DATA", state)
-},[state])
+// useEffect(()=>{
+// console.log("CONTEXT DATA", state)
+// },[state])
   useEffect(() => {
     // Initialize Bootstrap dropdown functionality
     const dropdownElements = document.querySelectorAll('.dropdown-toggle');
@@ -61,7 +61,8 @@ console.log("CONTEXT DATA", state)
               <FaShoppingCart />
             </Nav.Link>
             <Nav.Link as={Link} to="/" className="text-light">
-              <FaUserCircle size={25} /> <span className='ms-2'>{state.user}</span>
+              {/* <h5>{state.user?.firstName}</h5> */}
+              <FaUserCircle size={25} /> <span className='ms-2'>{}</span>
             </Nav.Link>
           </Nav>
         </Container>

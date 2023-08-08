@@ -4,13 +4,13 @@ import App from './App.jsx'
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter}from 'react-router-dom'
-import ContextProvider from './Components/context/context.jsx';
+// import ContextProvider from './Components/context/context.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
 
 
 
   <>
-<ContextProvider>
+{/* <ContextProvider> */}
 
 <React.StrictMode>
   <BrowserRouter>
@@ -19,6 +19,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
  </React.StrictMode>
 
 
-</ContextProvider>
+{/* </ContextProvider> */}
 </>
 )

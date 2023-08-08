@@ -32,6 +32,22 @@ export default function CategoryPage() {
           provident?
         </p>
       </div>
+      {/* {users.length > 0 ? (
+        <div className="container">
+          <div className="row gap-5 mt-5">
+            {users.map((user, index) => (
+              <ProductsCards data={user} key={index} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="d-flex justify-content-center align-items-center" style={{ width: '100vw', height: '100vh' }}>
+          <Spinner animation="border" />
+        </div>
+      )} */}
+
+
+
 
       {loading ? (
         <div className="text-center">
@@ -40,11 +56,11 @@ export default function CategoryPage() {
           </Spinner>
         </div>
       ) : (
-        <div className="row">
+        <div className="row p-3">
           {products.map((val, key) => (
-            <div className="col-md-6" key={key}>
+            <div className="col-md-3 " key={key}>
               <Link className="text-decoration-none" to={`/products/${val.id}`}>
-                <Card>
+                <Card style={{ width: '18rem' }} >
                   <Card.Img variant="top" src={val.thumbnail} />
                   <Card.Body>
                     <Card.Title style={fontStyle}>
@@ -59,7 +75,7 @@ export default function CategoryPage() {
         </div>
       )}
 
-      {products===STATUS.LOADING?<Spinner/>:<categoryName/>}
+      {<categoryName/>}
     </div>
 
     

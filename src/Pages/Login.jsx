@@ -7,7 +7,7 @@ const [password,setPassword] = useState("")
 
 
     const LoginUser = (e)=>{
-
+  // const { state , dispatch } = useContext(GlobleContext);
         e.preventDefault()
 
 const payLoad = {

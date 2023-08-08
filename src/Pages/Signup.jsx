@@ -1,12 +1,14 @@
-import React, { useReducer, useform_state } from 'react';
-import { useContext } from 'react'; 
+import React, { useContext, useReducer, useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { GlobleContext } from '../Components/context/context';
+// import { GlobleContext } from '../Components/context/context';
 
 const initialform_state = {
   firstName: '',
   lastName: '',
   email: '',
+  phoneNumber: '',
+  password: '',
+  confirmPassword: '',
   address: '',
   zipcode: '',
   form_state: '',
@@ -28,10 +30,10 @@ const formReducer = (form_state, action) => {
   }
 };
 
-const Signup = () => {
+export default function Signup() {
   const [form_state, formDispatch] = useReducer(formReducer, initialform_state);
-  const [state, dispatch] =useContext(GlobleContext)
-  const [errors, setErrors] = useform_state({});
+  // const {state ,dispatch}= useContext(GlobleContext)
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     formDispatch({
@@ -60,15 +62,13 @@ const Signup = () => {
       setErrors(validationErrors);
     } else {
       setErrors({});
+
+      dispatch({
+        type :"SIGNUP_USER",
+        payload : form_state
+      })
       // Perform signup logic here
       console.log(form_state);
-
-      dispatch(
-        {
-          type:"SIGNUP-USER",
-          payload : form_state
-        }
-      )
     }
   };
 
@@ -87,6 +87,20 @@ const Signup = () => {
       validationErrors.email = 'Email is required';
     } else if (!isValidEmail(form_state.email)) {
       validationErrors.email = 'Invalid email format';
+    }
+
+    if (!form_state.phoneNumber.trim()) {
+      validationErrors.phoneNumber = 'Phone number is required';
+    } else if (!isValidPhoneNumber(form_state.phoneNumber)) {
+      validationErrors.phoneNumber = 'Invalid phone number format';
+    }
+
+    if (!form_state.password.trim()) {
+      validationErrors.password = 'Password is required';
+    }
+
+    if (form_state.password !== form_state.confirmPassword) {
+      validationErrors.confirmPassword = 'Passwords do not match';
     }
 
     if (!form_state.address.trim()) {
@@ -113,6 +127,10 @@ const Signup = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  const isValidPhoneNumber = (phoneNumber) => {
+    // Add your phone number validation logic here
+    return /^\d{10}$/.test(phoneNumber);
+  };
 
   return (
     
@@ -304,7 +322,7 @@ value="javascript"
             onChange={handleSkillChange}
           />
           <label className="form-check-label" htmlFor="bootstrap">
-            Bootstrap
+            Bootstrap 
           </label>
         </div>
       </div>
@@ -316,4 +334,3 @@ value="javascript"
   );
 };
 
-export default Signup;
